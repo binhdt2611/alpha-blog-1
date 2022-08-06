@@ -12,6 +12,10 @@ class ArticlesController < ApplicationController
     @article = Article.new
   end
 
+  def edit
+    @article = Article.find(params[:id])
+  end
+
   def create 
     #render plain: params[:article] ==> return a plain text of hash "article"=>{"title"=>"hello rails", "description"=>"hello rails"} with the top-level key is :article
     # However, we can't pass params[:article] as Article.new(params[:article])
@@ -25,8 +29,16 @@ class ArticlesController < ApplicationController
       redirect_to article_path(@article)
     else
       render 'new'
-      
     end
   end
   
+  def update
+    @article = Article.find(params[:id])
+    if @article.update(params.require(:article).permit(:title, :description))
+      flash[:notice] = "Article was created successfully"
+      redirect_to @article
+    else
+      render 'edit'
+    end
+  end
 end
