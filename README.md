@@ -29,3 +29,10 @@ Rails naming conventions Articles resource
   + Article model file name: article.rb
   + Article model class name: Article
 - Table name: articles
+
+
+The front-end: Destroying (deleting) articles
+
+REST - Representational state transfer - mapping HTTP verbs (get, post, put/patch, delete) to CRUD actions
+
+resources provides REST-ful routes to Rails resources
