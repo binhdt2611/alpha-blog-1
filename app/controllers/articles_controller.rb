@@ -21,6 +21,7 @@ class ArticlesController < ApplicationController
     # However, we can't pass params[:article] as Article.new(params[:article])
     # We need to whitelist this param to be accepted only sub-key are :title and :description fields because those are the one we allow and use in our application
     @article = Article.new(article_params)
+    @article.user = User.first
     if @article.save
       #render plain: @article.inspect
       # article_path(@article) will query article.id to redirect to it's show.html
