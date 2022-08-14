@@ -4,11 +4,11 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     # Another the option instead of using @article, we can use obj at the file articles/_article.html.erb
     # then, at the show.html.erb file, we can add <%= render 'articles/article', obj: @users or @articles %>
-    @articles = @user.articles
+    @articles = @user.articles.paginate(page: params[:page], per_page: 3)
   end
 
   def index
-    @users = User.all
+    @users = User.paginate(page: params[:page], per_page: 3)
   end
   
   def new
