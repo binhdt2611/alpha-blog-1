@@ -20,6 +20,7 @@ class ArticlesController < ApplicationController
   end
 
   def create 
+    byebug
     #render plain: params[:article] ==> return a plain text of hash "article"=>{"title"=>"hello rails", "description"=>"hello rails"} with the top-level key is :article
     # However, we can't pass params[:article] as Article.new(params[:article])
     # We need to whitelist this param to be accepted only sub-key are :title and :description fields because those are the one we allow and use in our application
@@ -59,7 +60,7 @@ class ArticlesController < ApplicationController
   end
 
   def article_params
-    params.require(:article).permit(:title, :description)
+    params.require(:article).permit(:title, :description, category_ids: [])
   end
 
   def require_same_user
